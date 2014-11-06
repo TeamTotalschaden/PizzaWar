@@ -5,6 +5,8 @@ out/
 *.iml
 *.ipr
 *.iws
+*.bak
+*.bak2
 
 # Netbeans files
 build.xml
