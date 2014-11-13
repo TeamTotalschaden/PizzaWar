@@ -2,6 +2,7 @@ package com.mojang.mojam.entity;
 
 import org.lwjgl.util.vector.Vector3f;
 import org.newdawn.slick.Animation;
+import org.newdawn.slick.Color;
 import org.newdawn.slick.GameContainer;
 import org.newdawn.slick.Graphics;
 import org.newdawn.slick.Image;
@@ -26,6 +27,7 @@ public class Alien extends HealthEntity {
     private AlienType type;
     private int challengeLevel;
     private Animation alienAnim;
+    private SpriteSheet alienSprite;
     private int nextDamageMS;
     private int nextTalkMS;
 
@@ -45,8 +47,9 @@ public class Alien extends HealthEntity {
 	    if (type == AlienType.BIGGUS) {
 		size = 64;
 	    }
-	    alienAnim = new Animation(new SpriteSheet(animations[type.getID()], size,
-		    size), 200);
+	    alienSprite = new SpriteSheet(animations[type.getID()], size, size);
+	    alienAnim = new Animation(alienSprite, 200);
+	    alienAnim.setCurrentFrame(random.nextInt(alienSprite.getHorizontalCount()));
 	    alienAnim.setLooping(true);
 	} catch (SlickException e) {
 	    e.printStackTrace();
@@ -279,6 +282,22 @@ public class Alien extends HealthEntity {
     public void renderGroundLayer(GameContainer slickContainer, Graphics g,
 	    Camera camera) {
 	if (type == AlienType.EYE_RED || type == AlienType.EYE_BLUE) {
+	    int eyeImageIndex = alienAnim.getFrame();
+	    Color shadowMult = new Color(0, 0, 0, 0.5f);
+	    if (eyeImageIndex > 13 || eyeImageIndex < 26){
+		shadowMult = new Color(0, 0, 0, 0.0f);
+	    } else if (eyeImageIndex == 13 || eyeImageIndex == 26){
+		shadowMult = new Color(0, 0, 0, 0.1f);
+	    } else if (eyeImageIndex == 12 || eyeImageIndex == 27){
+		shadowMult = new Color(0, 0, 0, 0.2f);
+	    } else if (eyeImageIndex == 11 || eyeImageIndex == 28){
+		shadowMult = new Color(0, 0, 0, 0.3f);
+	    } else if (eyeImageIndex == 10 || eyeImageIndex == 29){
+		shadowMult = new Color(0, 0, 0, 0.4f);
+	    } else if (eyeImageIndex == 9 || eyeImageIndex == 30){
+		shadowMult = new Color(0, 0, 0, 0.45f);
+	    }
+	    super.renderGroundLayerWithMult(slickContainer, g, camera, shadowMult);
 	} else {
 	    super.renderGroundLayer(slickContainer, g, camera);
 	}

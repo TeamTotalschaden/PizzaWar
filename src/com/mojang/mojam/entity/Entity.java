@@ -63,13 +63,17 @@ public abstract class Entity {
     public abstract void render(GameContainer slickContainer, Graphics g, Camera camera);
 
     public void renderGroundLayer(GameContainer slickContainer, Graphics g, Camera camera) {
+	renderGroundLayerWithMult(slickContainer, g, camera, shadowColorMult);
+    }
+    
+    public void renderGroundLayerWithMult(GameContainer slickContainer, Graphics g, Camera camera, Color shadowMult) {
         if (y < 0) {
             return;
         }
         float shadowScale = (float) Math.pow(1 - Math.min(y, 400) / 400, 2);
         int halfShadowX = (int) (((float) shadowImage.getWidth() / 2.0f) * shadowScale);
         int halfShadowY = (int) (((float) shadowImage.getHeight() / 2.0f) * shadowScale);
-        g.drawImage(shadowImage, x - camera.getX() - halfShadowX, z - camera.getY() - halfShadowY, x - camera.getX() + halfShadowX, z - camera.getY() + halfShadowY, 0, 0, 32, 32, shadowColorMult);
+        g.drawImage(shadowImage, x - camera.getX() - halfShadowX, z - camera.getY() - halfShadowY, x - camera.getX() + halfShadowX, z - camera.getY() + halfShadowY, 0, 0, 32, 32, shadowMult);
     }
 
     public float getX() {
