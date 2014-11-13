@@ -43,11 +43,11 @@ public class AnimationParticle extends Particle {
     public static void initAnimations() throws SlickException {
         engineAnimation.setAnimation(new Animation(new SpriteSheet("res/particles/engine.png", 16, 16), 100));
         bulletImpactAnimation.setAnimation(new Animation(new SpriteSheet("res/particles/bullet_impact.png", 16, 16), 100));
-        explodeAnimation.setAnimation(new Animation(new SpriteSheet("res/actors/explosion1.png", 64, 64), 100));
+        explodeAnimation.setAnimation(new Animation(new SpriteSheet("res/particles/explosion1.png", 64, 64), 100));
         explodeAnimation.yo = 50;
-        explodeAnimation2.setAnimation(new Animation(new SpriteSheet("res/actors/explosion2.png", 64, 64), 50));
+        explodeAnimation2.setAnimation(new Animation(new SpriteSheet("res/particles/explosion2.png", 64, 64), 50));
         explodeAnimation2.yo = 50;
-        explodeAnimation3.setAnimation(new Animation(new SpriteSheet("res/actors/explosion3.png", 64, 192), 50));
+        explodeAnimation3.setAnimation(new Animation(new SpriteSheet("res/particles/explosion3.png", 64, 192), 50));
         explodeAnimation3.yo = 178;
         pizzaPop.setAnimation(new Animation(new SpriteSheet("res/actors/bubble_pop.png", 64, 64), 70));
         pizzaPop.yo = 45;
