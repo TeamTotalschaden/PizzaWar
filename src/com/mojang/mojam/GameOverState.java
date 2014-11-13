@@ -37,9 +37,9 @@ public class GameOverState extends BasicGameState {
     private static long scoreSides;
     private static long currentSide = 0;
     private static boolean loadingFinished = false;
-    private static final String db = "jdbc:mysql://sql4.freesqldatabase.com:3306/sql421062";
-    private static final String user = "sql421062";
-    private static final String pw = "qP9!bL8*";
+    private static final String db = "jdbc:mysql://sql4.freesqldatabase.com:3306/sql457996";
+    private static final String user = "sql457996";
+    private static final String pw = "pD1*zG4*";
 
     // DATENBANK END
 
