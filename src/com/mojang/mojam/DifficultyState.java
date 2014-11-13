@@ -57,7 +57,7 @@ public class DifficultyState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game)
 	    throws SlickException {
-	container.setMouseCursor("pointer/Pizzamouse32.png", 0, 0);
+	container.setMouseCursor("GUI/pointer/Pizzamouse32.png", 0, 0);
     }
 
     @Override

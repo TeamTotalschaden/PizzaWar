@@ -36,7 +36,7 @@ public class GameState extends BasicGameState implements MusicListener {
     }
 
     void startGame(GameContainer container) throws SlickException {
-	container.setMouseCursor("pointer/crosshair6.png", 16, 16);
+	container.setMouseCursor("GUI/pointer/crosshair6.png", 16, 16);
 	camera = new Camera();
 	pizzaWorld = new PizzaWorld(camera);
 	pizzaWorld.init(container);

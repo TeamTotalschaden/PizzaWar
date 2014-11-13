@@ -29,7 +29,7 @@ public class MojangLogoState extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame arg1)
 	    throws SlickException {
-	container.setMouseCursor("pointer/Pizzamouse32.png", 0, 0);
+	container.setMouseCursor("GUI/pointer/Pizzamouse32.png", 0, 0);
 	logoImage = new Image("cyborghippo.png");
 	startTime = container.getTime();
 	colMult.a = 0;
