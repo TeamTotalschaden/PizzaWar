@@ -22,7 +22,7 @@ public class SpiderMine extends HealthEntity {
         super(world, x, z);
 
         try {
-            anim = new Animation(new SpriteSheet("res/actors/spider.png", 16, 16), 100);
+            anim = new Animation(new SpriteSheet("actors/spider.png", 16, 16), 100);
         } catch (SlickException e) {
             e.printStackTrace();
         }

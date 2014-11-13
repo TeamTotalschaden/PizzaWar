@@ -20,13 +20,13 @@ public class PizzaResource {
     public static final int NUM_BUY_RESOURCES = 3;
 
     public static final String[] iconNames = {
-            "res/pickups/feta.png", 
-            "res/pickups/basil.png", 
-            "res/pickups/pepperoni.png", 
-            "res/pickups/oil_flask_full.png", 
-            "res/pickups/oil_flask_half.png", 
-            "res/actors/coin_silver_16.png", 
-            "res/actors/coin_gold_16.png",
+            "pickups/feta.png", 
+            "pickups/basil.png", 
+            "pickups/pepperoni.png", 
+            "pickups/oil_flask_full.png", 
+            "pickups/oil_flask_half.png", 
+            "pickups/coin_silver_16.png", 
+            "pickups/coin_gold_16.png",
     };
     public static final Animation[] icons = new Animation[NUM_RESOURCES];
 

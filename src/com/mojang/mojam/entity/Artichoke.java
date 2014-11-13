@@ -37,11 +37,11 @@ public class Artichoke extends HealthEntity {
         super(world, x, z);
         entityType = EntityType.BuildingEntity;
         try {
-            anim = new Animation(new SpriteSheet("res/actors/artichoke.png", 128, 128), 200);
-            wall1 = new Animation(new SpriteSheet("res/actors/wall1.png", 192, 192), 200);
-            wall2 = new Animation(new SpriteSheet("res/actors/wall2.png", 192, 192), 200);
-            wall3 = new Animation(new SpriteSheet("res/actors/wall3.png", 192, 192), 200);
-            shadow = new Image("res/actors/largeshadow.png");
+            anim = new Animation(new SpriteSheet("actors/artichoke.png", 128, 128), 200);
+            wall1 = new Animation(new SpriteSheet("actors/wall1.png", 192, 192), 200);
+            wall2 = new Animation(new SpriteSheet("actors/wall2.png", 192, 192), 200);
+            wall3 = new Animation(new SpriteSheet("actors/wall3.png", 192, 192), 200);
+            shadow = new Image("actors/largeshadow.png");
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -238,7 +238,7 @@ public class Artichoke extends HealthEntity {
                 "Fortification", "Tower Blaster", "Nova Defense", "Defense Spiders"
         };
         public static final String[] ICONS = {
-                "res/GUI/shopicons_base_walls.png", "res/GUI/shopicons_base_shot.png", "res/GUI/shopicons_base_blast.png", "res/GUI/shopicons_base_blast.png"
+                "GUI/shopicons_base_walls.png", "GUI/shopicons_base_shot.png", "GUI/shopicons_base_blast.png", "GUI/shopicons_base_blast.png"
         };
 
         /* @formatter:off */

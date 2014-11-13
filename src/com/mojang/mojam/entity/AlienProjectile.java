@@ -14,7 +14,7 @@ public class AlienProjectile extends Projectile {
 
         damage = 40;
         try {
-            bulletImage = new OffsetImage("res/actors/alienbullet.png");
+            bulletImage = new OffsetImage("actors/alienbullet.png");
             bulletOffset = new Vector2f(bulletImage.getWidth() / 2, bulletImage.getHeight() / 2);
         } catch (SlickException e) {
             e.printStackTrace();

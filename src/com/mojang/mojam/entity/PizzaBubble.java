@@ -22,7 +22,7 @@ public class PizzaBubble extends HealthEntity {
 
 		try {
 			bubbleAnimation = new Animation(new SpriteSheet(
-					"res/actors/bubble.png", 64, 64), 200);
+					"actors/bubble.png", 64, 64), 200);
 			bubbleAnimation.setLooping(false);
 		} catch (SlickException e) {
 			e.printStackTrace();

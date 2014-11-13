@@ -60,8 +60,8 @@ public class GameOverState extends BasicGameState {
 	nameInput.setMaxLength(15);
 	nameInput.setBorderColor(new Color(.0f, .0f, .0f, .5f));
 
-	failImage = new Image("res/GUI/game_over.png");
-	winImage = new Image("res/GUI/victory.png");
+	failImage = new Image("GUI/game_over.png");
+	winImage = new Image("GUI/victory.png");
 	starfield = new Starfield(container.getScreenWidth(),
 		container.getScreenHeight());
     }
@@ -69,7 +69,7 @@ public class GameOverState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game)
 	    throws SlickException {
-	container.setMouseCursor("res/pointer/Pizzamouse32.png", 0, 0);
+	container.setMouseCursor("pointer/Pizzamouse32.png", 0, 0);
 
 	// DATENBANK BEGIN
 	Thread t = new Thread() {

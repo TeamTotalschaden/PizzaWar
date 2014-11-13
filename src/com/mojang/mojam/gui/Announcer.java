@@ -32,7 +32,7 @@ public class Announcer {
         this.yPosition = yPosition;
         this.baseColor = baseColor;
         try {
-            announcementFont = new UnicodeFont("res/fonts/Franchise-Bold.ttf", 72, false, false);
+            announcementFont = new UnicodeFont("fonts/Franchise-Bold.ttf", 72, false, false);
             announcementFont.addAsciiGlyphs();
             announcementFont.getEffects().add(new ColorEffect());
             announcementFont.loadGlyphs();

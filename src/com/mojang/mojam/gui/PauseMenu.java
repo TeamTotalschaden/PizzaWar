@@ -24,7 +24,7 @@ public class PauseMenu {
     private static Image symbol;
 
     public PauseMenu() throws SlickException {
-	symbol = new Image("res/GUI/radioactive.png");
+	symbol = new Image("GUI/radioactive.png");
 	for (int i = 0; i < BUTTON_TEXT.length; i++) {
 	    BUTTON[i] = new Button(BUTTON_TEXT[i], new Color(235, 185, 5));
 	    BUTTON[i].setTextColor(Color.black);

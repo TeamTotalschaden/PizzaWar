@@ -20,9 +20,9 @@ public class Alien extends HealthEntity {
     private static final int shootFrequencyNorm = 150;
 
     private static final String[] animations = new String[] {
-	    "res/actors/alien1.png", "res/actors/alien2.png",
-	    "res/actors/alien3.png", "res/actors/alien4.png",
-	    "res/actors/alien5.png", "res/actors/alien6.png" };
+	    "actors/alien1.png", "actors/alien2.png",
+	    "actors/alien3.png", "actors/alien4.png",
+	    "actors/alien5.png", "actors/alien6.png" };
 
     private AlienType type;
     private int challengeLevel;

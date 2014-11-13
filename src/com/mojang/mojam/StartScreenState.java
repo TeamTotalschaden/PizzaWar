@@ -40,9 +40,9 @@ public class StartScreenState extends BasicGameState {
 	@Override
 	public void enter(GameContainer container, StateBasedGame game)
 			throws SlickException {
-		splashImage = new Image("res/GUI/splash.png");
-		startButtonImage = new Image("res/GUI/button_start.png");
-		anim = new Animation(new SpriteSheet("res/actors/artichoke.png", 128, 128), 200);
+		splashImage = new Image("GUI/splash.png");
+		startButtonImage = new Image("GUI/button_start.png");
+		anim = new Animation(new SpriteSheet("actors/artichoke.png", 128, 128), 200);
 		starfield = new Starfield(container.getScreenWidth(),
 				container.getScreenHeight());
 	}

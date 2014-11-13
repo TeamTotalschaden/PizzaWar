@@ -74,7 +74,7 @@ public class Player extends HealthEntity {
 	super(world, x, z);
 	health = getMaxHealth();
 	entityType = EntityType.PlayerEntity;
-	playerImageSheet = new SpriteSheet("res/actors/player1_1.png", 32, 32);
+	playerImageSheet = new SpriteSheet("actors/player1_1.png", 32, 32);
 
 	Image[] imagesUpLeft = new Image[4];
 	Image[] imagesUpRight = new Image[4];
@@ -527,13 +527,13 @@ public class Player extends HealthEntity {
 	public static final String[] DESCS = { "Max Health", "Speed",
 		"Jetpack Power", "Fire Rate", "Fire Damage",
 		"Shockwave Damage", "Regeneration Rate", "Beam Ammo" };
-	public static final String[] ICONS = { "res/GUI/shopicons_health.png",
-		"res/GUI/shopicons_speed.png", "res/GUI/shopicons_jetpack.png",
-		"res/GUI/shopicons_firerate.png",
-		"res/GUI/shopicons_fire_damage_level.png",
-		"res/GUI/shopicons_nova.png",
-		"res/GUI/shopicons_regenerate.png",
-		"res/GUI/shopicons_count.png", };
+	public static final String[] ICONS = { "GUI/shopicons_health.png",
+		"GUI/shopicons_speed.png", "GUI/shopicons_jetpack.png",
+		"GUI/shopicons_firerate.png",
+		"GUI/shopicons_fire_damage_level.png",
+		"GUI/shopicons_nova.png",
+		"GUI/shopicons_regenerate.png",
+		"GUI/shopicons_count.png", };
 
 	/* @formatter:off */
         private static final int[][][] UPGRADE_COSTS = {

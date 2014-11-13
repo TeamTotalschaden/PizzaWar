@@ -29,7 +29,7 @@ public class TeamTotalschadenLogoState extends BasicGameState {
     @Override
     public void init(GameContainer container, StateBasedGame arg1)
 	    throws SlickException {
-	logoImage = new Image("res/teamTotalschaden_lowres.png");
+	logoImage = new Image("teamTotalschaden_lowres.png");
 	startTime = container.getTime();
 	colMult.a = 0;
     }

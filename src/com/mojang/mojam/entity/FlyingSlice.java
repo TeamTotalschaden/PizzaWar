@@ -15,7 +15,7 @@ public class FlyingSlice extends Particle {
 
         boolean flipped = random.nextBoolean();
         try {
-            activeImage = new Image("res/pizzarelated/ansjovalienbotslice.png");
+            activeImage = new Image("pizzarelated/ansjovalienbotslice.png");
             if (flipped) {
                 activeImage = activeImage.getFlippedCopy(true, false);
             }

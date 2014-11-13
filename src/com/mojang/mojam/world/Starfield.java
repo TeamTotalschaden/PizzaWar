@@ -24,29 +24,29 @@ public class Starfield {
         this.width = width;
         this.height = height;
 
-        starImages[0][0] = new Image("res/bg/smallstar.png");
-        starImages[0][1] = new Image("res/bg/smallstar2.png");
-        starImages[0][2] = new Image("res/bg/smallstar3.png");
+        starImages[0][0] = new Image("bg/smallstar.png");
+        starImages[0][1] = new Image("bg/smallstar2.png");
+        starImages[0][2] = new Image("bg/smallstar3.png");
         
-        starImages[0][3] = new Image("res/bg/newsmallstar1.png");
-        starImages[0][4] = new Image("res/bg/newsmallstar2.png");
-        starImages[0][5] = new Image("res/bg/newsmallstar3.png");
+        starImages[0][3] = new Image("bg/newsmallstar1.png");
+        starImages[0][4] = new Image("bg/newsmallstar2.png");
+        starImages[0][5] = new Image("bg/newsmallstar3.png");
         
-        starImages[1][0] = new Image("res/bg/mediumstar.png");
-        starImages[1][1] = new Image("res/bg/mediumstar2.png");
-        starImages[1][2] = new Image("res/bg/mediumstar3.png");
+        starImages[1][0] = new Image("bg/mediumstar.png");
+        starImages[1][1] = new Image("bg/mediumstar2.png");
+        starImages[1][2] = new Image("bg/mediumstar3.png");
         
-        starImages[1][3] = new Image("res/bg/newmediumstar1.png");
-        starImages[1][4] = new Image("res/bg/newmediumstar2.png");
-        starImages[1][5] = new Image("res/bg/newmediumstar3.png");
+        starImages[1][3] = new Image("bg/newmediumstar1.png");
+        starImages[1][4] = new Image("bg/newmediumstar2.png");
+        starImages[1][5] = new Image("bg/newmediumstar3.png");
         
-        starImages[2][0] = new Image("res/bg/bigstar.png");
-        starImages[2][1] = new Image("res/bg/bigstar2.png");
-        starImages[2][2] = new Image("res/bg/bigstar3.png");
+        starImages[2][0] = new Image("bg/bigstar.png");
+        starImages[2][1] = new Image("bg/bigstar2.png");
+        starImages[2][2] = new Image("bg/bigstar3.png");
         
-        starImages[2][3] = new Image("res/bg/newbigstar1.png");
-        starImages[2][4] = new Image("res/bg/newbigstar2.png");
-        starImages[2][5] = new Image("res/bg/newbigstar3.png");
+        starImages[2][3] = new Image("bg/newbigstar1.png");
+        starImages[2][4] = new Image("bg/newbigstar2.png");
+        starImages[2][5] = new Image("bg/newbigstar3.png");
 
         for (int i = 0; i < 1000; i++) {
             stars.add(new Star(random.nextInt(width * 2) - width, random.nextInt(height * 2) - height, 1 + random.nextInt(3), random.nextInt(6), .95f + random.nextFloat() * .1f));

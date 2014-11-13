@@ -62,8 +62,8 @@ public class PizzaWorld {
     }
 
     public void init(GameContainer container) throws SlickException {
-	pizzaImage = new Image("res/pizzarelated/pizza_big.png");
-	Entity.shadowImage = new Image("res/actors/shadow.png");
+	pizzaImage = new Image("pizzarelated/pizza_big.png");
+	Entity.shadowImage = new Image("actors/shadow.png");
 	AnimationParticle.initAnimations();
 	PizzaResource.init();
 	Gui.init();
@@ -108,12 +108,12 @@ public class PizzaWorld {
 	this.camera.centerOnConstraints();
 
 	Image[] doodadImages = new Image[] {
-		new Image("res/pizzarelated/shrooms_1.png"),
-		new Image("res/pizzarelated/shrooms_1.png").getFlippedCopy(
+		new Image("pizzarelated/shrooms_1.png"),
+		new Image("pizzarelated/shrooms_1.png").getFlippedCopy(
 			true, false),
-		new Image("res/pizzarelated/salami_1.png"),
-		new Image("res/pizzarelated/salami_2.png"),
-		new Image("res/pizzarelated/olive_1.png"), };
+		new Image("pizzarelated/salami_1.png"),
+		new Image("pizzarelated/salami_2.png"),
+		new Image("pizzarelated/olive_1.png"), };
 
 	ArrayList<Image> doodadImageSelection = new ArrayList<Image>();
 	doodadImageSelection.add(doodadImages[0]);

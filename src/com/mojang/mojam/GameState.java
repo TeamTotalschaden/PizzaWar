@@ -25,18 +25,18 @@ public class GameState extends BasicGameState implements MusicListener {
     private PizzaWorld pizzaWorld;
     private Camera camera;
     Music music;
-    public String[] soundPaths = new String[] { "res/music/mus_fast02.ogg",
-    // "res/music/recording2.ogg",
-    // "res/music/recording3.ogg",
-    // "res/music/recording4.ogg",
-    // "res/music/recording5.ogg"
+    public String[] soundPaths = new String[] { "music/mus_fast02.ogg",
+    // "music/recording2.ogg",
+    // "music/recording3.ogg",
+    // "music/recording4.ogg",
+    // "music/recording5.ogg"
     };
 
     public GameState() {
     }
 
     void startGame(GameContainer container) throws SlickException {
-	container.setMouseCursor("res/pointer/crosshair6.png", 16, 16);
+	container.setMouseCursor("pointer/crosshair6.png", 16, 16);
 	camera = new Camera();
 	pizzaWorld = new PizzaWorld(camera);
 	pizzaWorld.init(container);

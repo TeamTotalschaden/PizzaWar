@@ -43,8 +43,8 @@ public class DifficultyState extends BasicGameState {
 	    throws SlickException {
 	starfield = new Starfield(container.getScreenWidth(),
 		container.getScreenHeight());
-	difficultyImage = new Image("res/pickups/pepperoni.png");
-	font = new UnicodeFont("res/fonts/Franchise-Bold.ttf", 72, false, false);
+	difficultyImage = new Image("pickups/pepperoni.png");
+	font = new UnicodeFont("fonts/Franchise-Bold.ttf", 72, false, false);
 	font.addAsciiGlyphs();
 	font.getEffects().add(new ColorEffect());
 	font.loadGlyphs();
@@ -57,7 +57,7 @@ public class DifficultyState extends BasicGameState {
     @Override
     public void enter(GameContainer container, StateBasedGame game)
 	    throws SlickException {
-	container.setMouseCursor("res/pointer/Pizzamouse32.png", 0, 0);
+	container.setMouseCursor("pointer/Pizzamouse32.png", 0, 0);
     }
 
     @Override

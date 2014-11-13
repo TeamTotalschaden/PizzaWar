@@ -12,7 +12,7 @@ public class Gui {
 	private static Image fortificationImage;
 
 	public static void init() throws SlickException {
-		fortificationImage = new Image("res/GUI/fortification_points.png");
+		fortificationImage = new Image("GUI/fortification_points.png");
 	}
 
 	public static void renderCenterString(Graphics g, String message, int cx,
