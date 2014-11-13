@@ -284,7 +284,7 @@ public class Alien extends HealthEntity {
 	if (type == AlienType.EYE_RED || type == AlienType.EYE_BLUE) {
 	    int eyeImageIndex = alienAnim.getFrame();
 	    Color shadowMult = new Color(0, 0, 0, 0.5f);
-	    if (eyeImageIndex > 13 || eyeImageIndex < 26){
+	    if (eyeImageIndex > 13 && eyeImageIndex < 26){
 		shadowMult = new Color(0, 0, 0, 0.0f);
 	    } else if (eyeImageIndex == 13 || eyeImageIndex == 26){
 		shadowMult = new Color(0, 0, 0, 0.1f);
