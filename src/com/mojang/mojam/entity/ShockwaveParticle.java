@@ -20,7 +20,7 @@ public class ShockwaveParticle extends Particle {
         this.maxSize = maxSize;
 
         try {
-            activeImage = new Image("res/actors/shockwave.png");
+            activeImage = new Image("res/particles/shockwave.png");
         } catch (SlickException e) {
             e.printStackTrace();
         }
@@ -62,7 +62,7 @@ public class ShockwaveParticle extends Particle {
         public AlienWarning(PizzaWorld world, float x, float z) {
             super(world, x, z, 1.0f);
             try {
-                activeImage = new Image("res/actors/alien_shockwave.png");
+                activeImage = new Image("res/particles/alien_shockwave.png");
             } catch (SlickException e) {
                 e.printStackTrace();
             }
