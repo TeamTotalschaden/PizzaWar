@@ -43,7 +43,7 @@ public class DifficultyState extends BasicGameState {
 	    throws SlickException {
 	starfield = new Starfield(container.getScreenWidth(),
 		container.getScreenHeight());
-	difficultyImage = new Image("pickups/pepperoni_red.png");
+	difficultyImage = new Image("pickups/pepperoni.png");
 	font = new UnicodeFont("fonts/Franchise-Bold.ttf", 72, false, false);
 	font.addAsciiGlyphs();
 	font.getEffects().add(new ColorEffect());
