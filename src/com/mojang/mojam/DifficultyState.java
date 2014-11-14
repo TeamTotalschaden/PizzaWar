@@ -28,8 +28,8 @@ public class DifficultyState extends BasicGameState {
     private static UnicodeFont font;
     private Starfield starfield;
 
-    private static final String BUTTON_TEXT[] = { "Easiest", "Easy", "Normal",
-	    "Hard", "Hardest", "Test" };
+    private static final String BUTTON_TEXT[] = { "EASIEST", "EASY", "NORMAL",
+	    "HARD", "HARDEST", "TEST" };
     private static final Button[] BUTTON = new Button[BUTTON_TEXT.length];
     
     @Override

@@ -19,7 +19,7 @@ public class PauseMenu {
     private static final Color shade = new Color(0, 0, 0, .5f);
 
     private static final Button[] BUTTON = new Button[3];
-    private static final String BUTTON_TEXT[] = { "Resume", "Restart", "Exit", };
+    private static final String BUTTON_TEXT[] = { "RESUME", "RESTART", "EXIT", };
 
     private static Image symbol;
 

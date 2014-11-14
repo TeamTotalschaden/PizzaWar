@@ -17,7 +17,7 @@ public class Button extends Image {
     private Color buttonColor = new Color(175, 155, 180);
     private Image button = new Image("GUI/button.png");
     //private UnicodeFont font = new UnicodeFont("fonts/Franchise-Bold.ttf", 48, false, false);
-    private UnicodeFont font = new UnicodeFont("fonts/MeltdownMF.ttf", 32, false, false);
+    private UnicodeFont font = new UnicodeFont("fonts/Meltdown.ttf", 32, false, false);
 
     public Button(Image button, UnicodeFont font, String buttonText,
 	    Color textColor, Color buttonColor, int xPos, int yPos)
