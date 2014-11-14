@@ -90,7 +90,7 @@ public class GameOverState extends BasicGameState {
 	    cn = DriverManager.getConnection(db, user, pw);
 
 	    ResultSet result = cn.createStatement().executeQuery(
-		    "SELECT count(1) FROM highscore");
+		    "SELECT count(1) FROM Highscore");
 	    while (result.next()) {
 		scoreSides = (long) (result.getLong("count(1)") / 10);
 	    }
@@ -113,7 +113,7 @@ public class GameOverState extends BasicGameState {
 	    // @formatter:off
 	    ResultSet result = cn.createStatement().executeQuery(
 		    "SELECT Name, Score " +
-		    "FROM `highscore` " +
+		    "FROM `Highscore` " +
 		    "ORDER BY Score DESC " +
 		    "LIMIT "+ start +" , 10");
 	    // @formatter:on
@@ -140,7 +140,7 @@ public class GameOverState extends BasicGameState {
 	    Class.forName("com.mysql.jdbc.Driver");
 	    cn = DriverManager.getConnection(db, user, pw);
 	    cn.createStatement().execute(
-		    "insert into highscore (Name, Score) values ('"
+		    "insert into Highscore (Name, Score) values ('"
 			    + nameInput.getText() + "', "
 			    + GameState.getFinalScore() + ");");
 	    cn.close();

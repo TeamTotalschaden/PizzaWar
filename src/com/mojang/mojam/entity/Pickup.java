@@ -118,23 +118,35 @@ public class Pickup extends Entity {
 		Sounds.COIN_3 };
 	if (entity instanceof Player) {
 	    Player player = (Player) entity;
-	    if (resourceType == PizzaResource.TYPE_OIL_FLASK_FULL) {
+	    switch (resourceType) {
+	    case PizzaResource.TYPE_FETA:
+	    case PizzaResource.TYPE_BASIL:
+	    case PizzaResource.TYPE_PEPPERONI_GREEN:
+		Sounds.getInstance().playSound(Sounds.PICKUP_HEALTH, x, y, z);
+		player.addResource(resourceType);
+		break;
+	    case PizzaResource.TYPE_PEPPERONI_RED:
+		player.heal(player.getMaxHealth() * 0.4f);
+		break;
+	    case PizzaResource.TYPE_OIL_FLASK_FULL:
 		Sounds.getInstance().playSound(Sounds.PICKUP_HEALTH, x, y, z);
 		player.setBeamTime(player.getMaxBeamTime());
-	    } else if (resourceType == PizzaResource.TYPE_OIL_FLASK_HALF) {
+		break;
+	    case PizzaResource.TYPE_OIL_FLASK_HALF:
 		Sounds.getInstance().playSound(Sounds.PICKUP_HEALTH, x, y, z);
 		player.addBeamTime(player.getMaxBeamTime() / 2);
-	    } else if (resourceType == PizzaResource.TYPE_COIN_SILVER) {
+		break;
+	    case PizzaResource.TYPE_COIN_SILVER:
 		Sounds.getInstance().playSound(coinSound[random.nextInt(4)], x,
 			y, z);
 		player.addCash(10);
-	    } else if (resourceType == PizzaResource.TYPE_COIN_GOLD) {
+		break;
+	    case PizzaResource.TYPE_COIN_GOLD:
 		Sounds.getInstance().playSound(coinSound[random.nextInt(4)], x,
 			y, z);
 		player.addCash(50);
-	    } else {
-		Sounds.getInstance().playSound(Sounds.PICKUP_HEALTH, x, y, z);
-		player.addResource(resourceType);
+		break;
+	    default:
 	    }
 	    setRemoved();
 	}
@@ -175,7 +187,7 @@ public class Pickup extends Entity {
     public static int pepperoniGreenDrop() {
 	return PizzaResource.TYPE_PEPPERONI_GREEN;
     }
-    
+
     public static int pepperoniRedDrop() {
 	return PizzaResource.TYPE_PEPPERONI_RED;
     }
