@@ -40,19 +40,19 @@ public class Projectile extends Entity {
         this(world, x, y, z, direction, speed);
         try {
             if (projectileLevel == 0) {
-                bulletImage = new OffsetImage("actors/bullet.png");
+                bulletImage = new OffsetImage("projectiles/bullet.png");
                 blastRadius = 0;
                 damage = 20;
             } else if (projectileLevel == 1) {
-                bulletImage = new OffsetImage("actors/bullet1.png");
+                bulletImage = new OffsetImage("projectiles/bullet1.png");
                 blastRadius = 30.0f;
                 damage = 35;
             } else if (projectileLevel == 2) {
-                bulletImage = new OffsetImage("actors/bullet2.png");
+                bulletImage = new OffsetImage("projectiles/bullet2.png");
                 blastRadius = 50.0f;
                 damage = 45;
             } else {
-                bulletImage = new OffsetImage("actors/bullet3.png");
+                bulletImage = new OffsetImage("projectiles/bullet3.png");
                 blastRadius = 50.0f;
                 damage = 50;
             }

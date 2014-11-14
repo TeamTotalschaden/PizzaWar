@@ -36,7 +36,7 @@ public class NovaProjectile extends Projectile {
         startPosition = new Vector2f(x, z);
         this.maxDistance = maxDistance;
         try {
-            bulletImage = new Image("actors/nova.png");
+            bulletImage = new Image("particles/nova.png");
             bulletOffset = new Vector2f(bulletImage.getWidth() / 2, bulletImage.getHeight() / 2);
         } catch (SlickException e) {
             e.printStackTrace();
