@@ -143,19 +143,19 @@ public class Pickup extends Entity {
     public static int resourceType(Random random) {
 	int selectRoll = random.nextInt(14);
 	if (selectRoll <= 2) {
-	    return PizzaResource.TYPE_PEPPERONI;
+	    return PizzaResource.TYPE_PEPPERONI_GREEN; // 21,5%
 	} else if (selectRoll <= 6) {
-	    return PizzaResource.TYPE_BASIL;
+	    return PizzaResource.TYPE_BASIL; // 28,5%
 	}
-	return PizzaResource.TYPE_FETA;
+	return PizzaResource.TYPE_FETA; // 50%
     }
 
     public static int oilFlaskDrop(Random random) {
 	int selectRoll = random.nextInt(100);
 	if (selectRoll < 5) {
-	    return PizzaResource.TYPE_OIL_FLASK_FULL;
+	    return PizzaResource.TYPE_OIL_FLASK_FULL; // 5 %
 	} else if (selectRoll < 15) {
-	    return PizzaResource.TYPE_OIL_FLASK_HALF;
+	    return PizzaResource.TYPE_OIL_FLASK_HALF; // 10 %
 	}
 	return -1;
     }
@@ -172,8 +172,12 @@ public class Pickup extends Entity {
 	return drop;
     }
 
-    public static int pepperoniDrop() {
-	return PizzaResource.TYPE_PEPPERONI;
+    public static int pepperoniGreenDrop() {
+	return PizzaResource.TYPE_PEPPERONI_GREEN;
+    }
+    
+    public static int pepperoniRedDrop() {
+	return PizzaResource.TYPE_PEPPERONI_RED;
     }
 
     public static int basilDrop() {
