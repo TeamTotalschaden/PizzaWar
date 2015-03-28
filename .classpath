@@ -6,7 +6,11 @@
 	<classpathentry kind="lib" path="lib/jogg-0.0.7.jar"/>
 	<classpathentry kind="lib" path="lib/jorbis-0.0.15.jar"/>
 	<classpathentry kind="lib" path="lib/junit-4.10.jar"/>
-	<classpathentry kind="lib" path="lib/slick.jar"/>
+	<classpathentry kind="lib" path="lib/slick.jar">
+		<attributes>
+			<attribute name="org.eclipse.jdt.launching.CLASSPATH_ATTR_LIBRARY_PATH_ENTRY" value="PizzaWar/lib/native/windows"/>
+		</attributes>
+	</classpathentry>
 	<classpathentry kind="lib" path="lib/jar/AppleJavaExtensions.jar"/>
 	<classpathentry kind="lib" path="lib/jar/asm-debug-all.jar"/>
 	<classpathentry kind="lib" path="lib/jar/jinput.jar"/>
