@@ -111,7 +111,7 @@ public class Player extends HealthEntity {
 		}
 		playerAnim[6] = new Animation(imagesUp, 200, true);
 		playerAnim[7] = new Animation(imagesDown, 200, true);
-		
+
 		beamTime = getMaxBeamTime();
 		beamBar = new BeamBar(this);
 	}

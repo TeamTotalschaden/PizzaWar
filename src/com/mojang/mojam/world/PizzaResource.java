@@ -6,39 +6,36 @@ import org.newdawn.slick.SpriteSheet;
 
 public class PizzaResource {
 
-    public static final int TYPE_FETA = 0;
-    public static final int TYPE_BASIL = 1;
-    public static final int TYPE_PEPPERONI_GREEN = 2;
-    public static final int TYPE_PEPPERONI_RED = 3;
-    public static final int TYPE_OIL_FLASK_FULL = 4;
-    public static final int TYPE_OIL_FLASK_HALF = 5;
-   
-    public static final int TYPE_COIN_SILVER = 6;
-    public static final int TYPE_COIN_GOLD = 7;
+	public static final int TYPE_FETA = 0;
+	public static final int TYPE_BASIL = 1;
+	public static final int TYPE_PEPPERONI_GREEN = 2;
+	public static final int TYPE_PEPPERONI_RED = 3;
+	public static final int TYPE_OIL_FLASK_FULL = 4;
+	public static final int TYPE_OIL_FLASK_HALF = 5;
 
-    
-    public static final int NUM_RESOURCES = 8;
-    public static final int NUM_BUY_RESOURCES = 3;
+	public static final int TYPE_COIN_SILVER = 6;
+	public static final int TYPE_COIN_GOLD = 7;
 
-    public static final String[] iconNames = {
-            "pickups/feta.png", 
-            "pickups/basil.png", 
-            "pickups/pepperoni_green.png", 
-            "pickups/pepperoni_red.png", 
-            "pickups/oil_flask_full.png", 
-            "pickups/oil_flask_half.png", 
-            "pickups/coin_silver_16.png", 
-            "pickups/coin_gold_16.png",
-    };
-    public static final Animation[] icons = new Animation[NUM_RESOURCES];
+	public static final int NUM_RESOURCES = 8;
+	public static final int NUM_BUY_RESOURCES = 3;
 
-    public static void init() throws SlickException {
-	for (int i = 0; i < NUM_RESOURCES; i++) {
-	    if (i == PizzaResource.TYPE_COIN_SILVER || i == PizzaResource.TYPE_COIN_GOLD) {
-		icons[i] = new Animation(new SpriteSheet(iconNames[i], 16, 16), 200);
-	    } else {
-		icons[i] = new Animation(new SpriteSheet(iconNames[i], 32, 32), 200);
-	    }
-        }
-    }
+	public static final String[] iconNames = { "pickups/feta.png",
+			"pickups/basil.png", "pickups/pepperoni_green.png",
+			"pickups/pepperoni_red.png", "pickups/oil_flask_full.png",
+			"pickups/oil_flask_half.png", "pickups/coin_silver_16.png",
+			"pickups/coin_gold_16.png", };
+	public static final Animation[] icons = new Animation[NUM_RESOURCES];
+
+	public static void init() throws SlickException {
+		for (int i = 0; i < NUM_RESOURCES; i++) {
+			if (i == PizzaResource.TYPE_COIN_SILVER
+					|| i == PizzaResource.TYPE_COIN_GOLD) {
+				icons[i] = new Animation(new SpriteSheet(iconNames[i], 16, 16),
+						200);
+			} else {
+				icons[i] = new Animation(new SpriteSheet(iconNames[i], 32, 32),
+						200);
+			}
+		}
+	}
 }

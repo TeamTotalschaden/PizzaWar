@@ -25,144 +25,144 @@ import com.mojang.mojam.gui.Announcer;
  * @author Johan
  */
 public class GameDirector {
-    private PizzaWorld gameWorld;
-    Random random = new Random();
-    final long levelPause = 10000;
-    List<EnemyWave> enemyWaves = new ArrayList<EnemyWave>();
-    int currentEnemyWave = 0;
-    private int timeUntilNextRandomPickup;
-    private Announcer announcer;
-    private Announcer warningAnnouncer;
-    boolean announcedLevel = false;
-    long levelClearedTime = 0;
+	private PizzaWorld gameWorld;
+	Random random = new Random();
+	final long levelPause = 10000;
+	List<EnemyWave> enemyWaves = new ArrayList<EnemyWave>();
+	int currentEnemyWave = 0;
+	private int timeUntilNextRandomPickup;
+	private Announcer announcer;
+	private Announcer warningAnnouncer;
+	boolean announcedLevel = false;
+	long levelClearedTime = 0;
 
-    public GameDirector(PizzaWorld gameWorld) {
-	this.gameWorld = gameWorld;
-	switch (DifficultyState.difficulty) {
-	case 0:
-	    DifficultyState.diffMulti = 0.50f;
-	    break;
-	case 1:
-	    DifficultyState.diffMulti = 0.75f;
-	    break;
-	case 2:
-	    DifficultyState.diffMulti = 1.00f;
-	    break;
-	case 3:
-	    DifficultyState.diffMulti = 1.25f;
-	    break;
-	case 4:
-	    DifficultyState.diffMulti = 1.50f;
-	    break;
-	case 5:
-	    DifficultyState.diffMulti = 1.00f;
-	    break;
-	default:
-	    DifficultyState.diffMulti = 1.00f;
-	    break;
-	}
-	
-	if (DifficultyState.difficulty != 5)
-	    createEnemyWaves(DifficultyState.diffMulti);
-	else 
-	    createTestWaves();
-	
-	int tmpCurLevel = 1;
-	for (EnemyWave wave : enemyWaves) {
-	    wave.setCurLevel(tmpCurLevel);
-	    tmpCurLevel++;
-	}
-    }
-
-    public void init(GameContainer container) {
-	announcer = new Announcer(container, container.getHeight() / 2 + 140,
-		Color.white);
-	announcer.postMessage(container, "Prepare for Battle!");
-
-	warningAnnouncer = new Announcer(container,
-		container.getHeight() / 2 - 180, Color.red);
-    }
-
-    public void update(GameContainer container, int deltaMS) {
-	EnemyWave currentWave = enemyWaves.get(currentEnemyWave);
-	if (currentWave.isWaveDone() && announcedLevel
-		&& gameWorld.getGameTime() > levelClearedTime + levelPause) {
-	    if (currentEnemyWave + 1 < enemyWaves.size()) {
-		currentEnemyWave++;
-		currentWave = enemyWaves.get(currentEnemyWave);
-		announcer.postMessage(container, currentWave.getName());
-		announcedLevel = false;
-
-		for (int i = 0; i < 1 + (currentEnemyWave / 5); i++) {
-		    gameWorld.addParticle(new FlyingSlice(gameWorld));
+	public GameDirector(PizzaWorld gameWorld) {
+		this.gameWorld = gameWorld;
+		switch (DifficultyState.difficulty) {
+		case 0:
+			DifficultyState.diffMulti = 0.50f;
+			break;
+		case 1:
+			DifficultyState.diffMulti = 0.75f;
+			break;
+		case 2:
+			DifficultyState.diffMulti = 1.00f;
+			break;
+		case 3:
+			DifficultyState.diffMulti = 1.25f;
+			break;
+		case 4:
+			DifficultyState.diffMulti = 1.50f;
+			break;
+		case 5:
+			DifficultyState.diffMulti = 1.00f;
+			break;
+		default:
+			DifficultyState.diffMulti = 1.00f;
+			break;
 		}
-	    }
-	}
-	if (!announcedLevel && currentWave.isWaveDone()
-		&& gameWorld.getNumberOfEnimies() == 0) {
-	    levelClearedTime = gameWorld.getGameTime();
-	    announcedLevel = true;
-	    announcer.postMessage(container, "Level Cleared!");
-	}
-	enemyWaves.get(currentEnemyWave).update(container, deltaMS);
 
-	timeUntilNextRandomPickup -= deltaMS;
-	if (timeUntilNextRandomPickup < 0) {
-	    Vector2f pos = gameWorld.getDoodadSafePizzaPosition(random);
-	    gameWorld.addEntity(new PizzaBubble(gameWorld, pos.x, pos.y));
+		if (DifficultyState.difficulty != 5)
+			createEnemyWaves(DifficultyState.diffMulti);
+		else
+			createTestWaves();
 
-	    timeUntilNextRandomPickup = 4000 + random.nextInt(11) * 1000;
+		int tmpCurLevel = 1;
+		for (EnemyWave wave : enemyWaves) {
+			wave.setCurLevel(tmpCurLevel);
+			tmpCurLevel++;
+		}
 	}
 
-	// check warnings
-	Player player = gameWorld.getPlayer();
-	if (player.getHealth() < player.getMaxHealth() * .25f) {
-	    warningAnnouncer.updateMessage(container, "Warning: Low Health!");
+	public void init(GameContainer container) {
+		announcer = new Announcer(container, container.getHeight() / 2 + 140,
+				Color.white);
+		announcer.postMessage(container, "Prepare for Battle!");
+
+		warningAnnouncer = new Announcer(container,
+				container.getHeight() / 2 - 180, Color.red);
 	}
 
-	announcer.update(container, deltaMS);
-	warningAnnouncer.update(container, deltaMS);
-    }
+	public void update(GameContainer container, int deltaMS) {
+		EnemyWave currentWave = enemyWaves.get(currentEnemyWave);
+		if (currentWave.isWaveDone() && announcedLevel
+				&& gameWorld.getGameTime() > levelClearedTime + levelPause) {
+			if (currentEnemyWave + 1 < enemyWaves.size()) {
+				currentEnemyWave++;
+				currentWave = enemyWaves.get(currentEnemyWave);
+				announcer.postMessage(container, currentWave.getName());
+				announcedLevel = false;
 
-    public void renderGUI(GameContainer container, Graphics g) {
-	String message = "";
-	if (gameWorld.getNumberOfEnimies() == 0
-		&& enemyWaves.get(currentEnemyWave).isWaveDone()) {
-	    if (currentEnemyWave + 1 < enemyWaves.size()) {
-		long secondsUntilNextLevel = ((levelClearedTime + levelPause) - gameWorld
-			.getGameTime()) / 1000;
-		message = String.format("%s starts in %d seconds", enemyWaves
-			.get(currentEnemyWave + 1).getName(),
-			secondsUntilNextLevel);
-	    } else {
-		message = "You won, I guess...";
-	    }
-	} else {
-	    // message = enemyWaves.get(currentEnemyWave).getName();
+				for (int i = 0; i < 1 + (currentEnemyWave / 5); i++) {
+					gameWorld.addParticle(new FlyingSlice(gameWorld));
+				}
+			}
+		}
+		if (!announcedLevel && currentWave.isWaveDone()
+				&& gameWorld.getNumberOfEnimies() == 0) {
+			levelClearedTime = gameWorld.getGameTime();
+			announcedLevel = true;
+			announcer.postMessage(container, "Level Cleared!");
+		}
+		enemyWaves.get(currentEnemyWave).update(container, deltaMS);
+
+		timeUntilNextRandomPickup -= deltaMS;
+		if (timeUntilNextRandomPickup < 0) {
+			Vector2f pos = gameWorld.getDoodadSafePizzaPosition(random);
+			gameWorld.addEntity(new PizzaBubble(gameWorld, pos.x, pos.y));
+
+			timeUntilNextRandomPickup = 4000 + random.nextInt(11) * 1000;
+		}
+
+		// check warnings
+		Player player = gameWorld.getPlayer();
+		if (player.getHealth() < player.getMaxHealth() * .25f) {
+			warningAnnouncer.updateMessage(container, "Warning: Low Health!");
+		}
+
+		announcer.update(container, deltaMS);
+		warningAnnouncer.update(container, deltaMS);
 	}
-	int width = g.getFont().getWidth(message);
-	int height = g.getFont().getHeight(message);
-	g.setColor(Color.white);
-	g.drawString(message, container.getWidth() / 2 - width / 2,
-		container.getHeight() / 6 - height / 2);
-	announcer.render(container, g);
-	warningAnnouncer.render(container, g);
-    }
 
-    private EnemyWave createEnemyWave(String name) {
-	EnemyWave wave = new EnemyWave(name, gameWorld);
-	enemyWaves.add(wave);
-	return wave;
-    }
+	public void renderGUI(GameContainer container, Graphics g) {
+		String message = "";
+		if (gameWorld.getNumberOfEnimies() == 0
+				&& enemyWaves.get(currentEnemyWave).isWaveDone()) {
+			if (currentEnemyWave + 1 < enemyWaves.size()) {
+				long secondsUntilNextLevel = ((levelClearedTime + levelPause) - gameWorld
+						.getGameTime()) / 1000;
+				message = String.format("%s starts in %d seconds", enemyWaves
+						.get(currentEnemyWave + 1).getName(),
+						secondsUntilNextLevel);
+			} else {
+				message = "You won, I guess...";
+			}
+		} else {
+			// message = enemyWaves.get(currentEnemyWave).getName();
+		}
+		int width = g.getFont().getWidth(message);
+		int height = g.getFont().getHeight(message);
+		g.setColor(Color.white);
+		g.drawString(message, container.getWidth() / 2 - width / 2,
+				container.getHeight() / 6 - height / 2);
+		announcer.render(container, g);
+		warningAnnouncer.render(container, g);
+	}
 
-    public boolean isWon() {
-	return currentEnemyWave >= (enemyWaves.size() - 1)
-		&& gameWorld.getNumberOfEnimies() == 0
-		&& enemyWaves.get(currentEnemyWave).isWaveDone();
-    }
+	private EnemyWave createEnemyWave(String name) {
+		EnemyWave wave = new EnemyWave(name, gameWorld);
+		enemyWaves.add(wave);
+		return wave;
+	}
 
-    public void createEnemyWaves(float mult) {
-	// @formatter:off
+	public boolean isWon() {
+		return currentEnemyWave >= (enemyWaves.size() - 1)
+				&& gameWorld.getNumberOfEnimies() == 0
+				&& enemyWaves.get(currentEnemyWave).isWaveDone();
+	}
+
+	public void createEnemyWaves(float mult) {
+		// @formatter:off
 	createEnemyWave("Level 1")
 		.addGroup(new EnemyGroup(0)
 			.addEnemy((int)(1*mult), AlienType.ATTACK_PLAYER, 0))
@@ -410,10 +410,10 @@ public class GameDirector {
 		.addGroup(new EnemyGroup(10)
 			.addEnemy((int)(10*mult), AlienType.BIGGUS, 3));
 	// @formatter:on
-    }
-    
-    public void createTestWaves() {
-	// @formatter:off
+	}
+
+	public void createTestWaves() {
+		// @formatter:off
 	createEnemyWave("TEST Alien5 Difficulty 0")
 		.addGroup(new EnemyGroup(0).addEnemy(1, AlienType.EYE_RED, 0))
 		.addGroup(new EnemyGroup(0).addEnemy(1, AlienType.EYE_RED, 0))
@@ -447,5 +447,5 @@ public class GameDirector {
 		.addGroup(new EnemyGroup(0).addEnemy(1, AlienType.EYE_BLUE, 3))
 		.addGroup(new EnemyGroup(0).addEnemy(1, AlienType.EYE_BLUE, 3));
 	// @formatter:on
-    }
+	}
 }

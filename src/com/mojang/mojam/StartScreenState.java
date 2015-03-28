@@ -42,7 +42,8 @@ public class StartScreenState extends BasicGameState {
 			throws SlickException {
 		splashImage = new Image("GUI/splash.png");
 		startButtonImage = new Image("GUI/button_start.png");
-		anim = new Animation(new SpriteSheet("actors/artichoke.png", 128, 128), 200);
+		anim = new Animation(new SpriteSheet("actors/artichoke.png", 128, 128),
+				200);
 		starfield = new Starfield(container.getScreenWidth(),
 				container.getScreenHeight());
 	}
@@ -56,10 +57,13 @@ public class StartScreenState extends BasicGameState {
 				(gc.getScreenWidth() - splashImage.getWidth()) / 2,
 				(gc.getScreenHeight() - splashImage.getHeight()) / 2);
 		Rectangle buttonRect = getStartGameButtonRect(gc);
-		grphcs.drawImage(startButtonImage, buttonRect.getX(), buttonRect.getY() + 25);
-		anim.draw(gc.getWidth() / 2 - anim.getWidth() / 2, gc.getHeight() / 2 + 100);
+		grphcs.drawImage(startButtonImage, buttonRect.getX(),
+				buttonRect.getY() + 25);
+		anim.draw(gc.getWidth() / 2 - anim.getWidth() / 2,
+				gc.getHeight() / 2 + 100);
 		grphcs.setColor(new org.newdawn.slick.Color(0xFFFFFFFF));
-		grphcs.drawString(MainClass.Version, gc.getWidth() - 100, gc.getHeight() - 25);
+		grphcs.drawString(MainClass.Version, gc.getWidth() - 100,
+				gc.getHeight() - 25);
 	}
 
 	@Override
