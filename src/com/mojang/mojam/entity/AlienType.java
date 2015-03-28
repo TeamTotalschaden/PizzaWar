@@ -1,7 +1,7 @@
 package com.mojang.mojam.entity;
 
 public enum AlienType {
-    ATTACK_PLAYER(0), ATTACK_NUKE(1), SHOOTER(2), BIGGUS(3), EYE_RED(4), EYE_BLUE(
+    NULL(-1), ATTACK_PLAYER(0), ATTACK_NUKE(1), SHOOTER(2), BIGGUS(3), EYE_RED(4), EYE_BLUE(
 	    5);
     private final int id;
 
