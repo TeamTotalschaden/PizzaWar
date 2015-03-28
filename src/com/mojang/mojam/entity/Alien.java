@@ -125,20 +125,29 @@ public class Alien extends HealthEntity {
 		    AnimationParticle.explodeAnimation2));
 
 	    int score = 0;
-	    if (type == AlienType.ATTACK_PLAYER) {
-		score = (int) (100 * DifficultyState.diffMulti);
-	    } else if (type == AlienType.ATTACK_NUKE) {
-		score = (int) (125 * DifficultyState.diffMulti);
-	    } else if (type == AlienType.SHOOTER) {
-		score = (int) (250 * DifficultyState.diffMulti);
-	    } else if (type == AlienType.BIGGUS) {
-		score = (int) (500 * DifficultyState.diffMulti);
-	    } else if (type == AlienType.EYE_RED) {
-		score = (int) (300 * DifficultyState.diffMulti);
-	    } else if (type == AlienType.EYE_BLUE) {
-		score = (int) (250 * DifficultyState.diffMulti);
+	    switch (type){
+	    case ATTACK_NUKE:
+		score = 125;
+		break;
+	    case ATTACK_PLAYER:
+		score = 100;
+		break;
+	    case BIGGUS:
+		score = 500;
+		break;
+	    case EYE_BLUE:
+		score = 250;
+		break;
+	    case EYE_RED:
+		score = 300;
+		break;
+	    case SHOOTER:
+		score = 250;
+		break;
+	    default:
+		break;
 	    }
-	    world.getPlayer().addScore(score);
+	    world.getPlayer().addScore((int)(score * DifficultyState.diffMulti));
 
 	    boolean coinDrop = false;
 	    int coin = Pickup.coinDrop(this, random);
@@ -161,103 +170,127 @@ public class Alien extends HealthEntity {
 	}
 
 	nextShootMS -= deltaMS;
-	if (type == AlienType.SHOOTER || type == AlienType.EYE_RED) {
-	    float multi = 1.00f;
-	    if (type == AlienType.EYE_RED) {
-		multi = 1.00f + 0.50f * challengeLevel;
-	    }
-	    if (nextShootMS <= 0) {
-		nextShootMS = 4000 + random.nextInt(3) * 1000;
+	switch(type){
 
-		Player player = world.getPlayer();
-		float dx = player.x - x;
-		float dz = player.z - z;
-
-		Vector3f projectileDirection = new Vector3f(dx, 0, dz);
-		projectileDirection.normalise();
-		Projectile bullet = new AlienProjectile(world, x, 10, z,
-			projectileDirection, shootFrequencyNorm * multi);
-		world.addEntity(bullet);
-
-		if (challengeLevel > 0) {
-		    double angle = Math.atan2(projectileDirection.z,
-			    projectileDirection.x);
-
-		    projectileDirection = new Vector3f();
-		    projectileDirection.x = (float) Math.cos(angle + Math.PI
-			    * .05);
-		    projectileDirection.z = (float) Math.sin(angle + Math.PI
-			    * .05);
-		    bullet = new AlienProjectile(world, x, 10, z,
-			    projectileDirection, shootFrequencyNorm * multi);
-		    world.addEntity(bullet);
-
-		    projectileDirection = new Vector3f();
-		    projectileDirection.x = (float) Math.cos(angle - Math.PI
-			    * .05);
-		    projectileDirection.z = (float) Math.sin(angle - Math.PI
-			    * .05);
-		    bullet = new AlienProjectile(world, x, 10, z,
-			    projectileDirection, shootFrequencyNorm * multi);
-		    world.addEntity(bullet);
-		}
-		if (challengeLevel > 1) {
-		    // at level 2, withdraw one second of delay
-		    nextShootMS -= 1000;
-		}
-
-		Sounds.getInstance().playSound(Sounds.ALIEN_SHOOT, x, y, z);
-	    }
-	} else if (type == AlienType.BIGGUS) {
-	    if (nextShootMS <= 0) {
-		nextShootMS = 4000 + random.nextInt(3) * 1000;
-
-		double startAngle = random.nextDouble() * Math.PI;
-		for (double a = 0; a < Math.PI * 2; a += Math.PI * .15f) {
-		    double angle = startAngle + a;
-		    Vector3f projectileDirection = new Vector3f();
-		    projectileDirection.x = (float) Math.cos(angle + Math.PI
-			    * .05);
-		    projectileDirection.y = (float) (Math.PI * .025);
-		    projectileDirection.z = (float) Math.sin(angle + Math.PI
-			    * .05);
-		    Projectile bullet = new AlienProjectile(world, x, 10, z,
-			    projectileDirection, shootFrequencyNorm);
-		    world.addEntity(bullet);
-		}
-		Sounds.getInstance().playSound(Sounds.ALIEN_SHOOT, x, y, z);
-	    }
-	} else if (type == AlienType.ATTACK_NUKE && suicideTimeMS > 0) {
-	    int beepTime = suicideTimeMS / 500;
-	    suicideTimeMS -= deltaMS;
-
-	    if (beepTime != suicideTimeMS / 500) {
-		Sounds.getInstance().playSound(Sounds.ALIEN_WARNING, x, y, z);
-		world.addParticle(new ShockwaveParticle.AlienWarning(world, x,
-			z));
-	    }
-	    if (suicideTimeMS <= 0) {
-		// if still within range of the artichoke, deal damage
-		Artichoke artichoke = world.getArtichoke();
-		float distanceToSqr = perspectiveDistanceToSqr(artichoke);
-		float maxDist = getCollisionRadius()
-			+ artichoke.getCollisionRadius() + 10;
-		if (distanceToSqr < maxDist * maxDist) {
-		    artichoke.hurt(150);
-		}
-		Sounds.getInstance().playSound(Sounds.ALIEN_SUICIDE, x, y, z);
-		world.addParticle(new AnimationParticle(world, x, y, z,
-			AnimationParticle.explodeAnimation3));
-		world.getCamera().addScreenShake(3.0f);
-		setRemoved();
-	    }
+	case ATTACK_PLAYER:
+	case EYE_BLUE:
+	    // not shooting
+	    break;
+	case SHOOTER:
+	case EYE_RED:
+	    performNormShoot();
+	    break;
+	case BIGGUS:
+	    performCircleShoot();
+	    break;
+	case ATTACK_NUKE:
+	    performNuke(deltaMS);
+	    break;
+	default:
+	    break;
 	}
-
+	
 	if (y < -100) {
 	    hurt(-y * deltaMS * .001f);
 	}
 
 	return true;
+    }
+
+    private void performNuke(int deltaMS) {
+	int beepTime = suicideTimeMS / 500;
+	suicideTimeMS -= deltaMS;
+
+	if (beepTime != suicideTimeMS / 500) {
+	Sounds.getInstance().playSound(Sounds.ALIEN_WARNING, x, y, z);
+	world.addParticle(new ShockwaveParticle.AlienWarning(world, x,
+		z));
+	}
+	if (suicideTimeMS <= 0) {
+	// if still within range of the artichoke, deal damage
+	Artichoke artichoke = world.getArtichoke();
+	float distanceToSqr = perspectiveDistanceToSqr(artichoke);
+	float maxDist = getCollisionRadius()
+		+ artichoke.getCollisionRadius() + 10;
+	if (distanceToSqr < maxDist * maxDist) {
+	    artichoke.hurt(150);
+	}
+	Sounds.getInstance().playSound(Sounds.ALIEN_SUICIDE, x, y, z);
+	world.addParticle(new AnimationParticle(world, x, y, z,
+		AnimationParticle.explodeAnimation3));
+	world.getCamera().addScreenShake(3.0f);
+	setRemoved();
+	}
+    }
+
+    private void performCircleShoot() {
+	if (nextShootMS <= 0) {
+	nextShootMS = 4000 + random.nextInt(3) * 1000;
+
+	double startAngle = random.nextDouble() * Math.PI;
+	for (double a = 0; a < Math.PI * 2; a += Math.PI * .15f) {
+	    double angle = startAngle + a;
+	    Vector3f projectileDirection = new Vector3f();
+	    projectileDirection.x = (float) Math.cos(angle + Math.PI
+		    * .05);
+	    projectileDirection.y = (float) (Math.PI * .025);
+	    projectileDirection.z = (float) Math.sin(angle + Math.PI
+		    * .05);
+	    Projectile bullet = new AlienProjectile(world, x, 10, z,
+		    projectileDirection, shootFrequencyNorm);
+	    world.addEntity(bullet);
+	}
+	Sounds.getInstance().playSound(Sounds.ALIEN_SHOOT, x, y, z);
+	}
+    }
+
+    private void performNormShoot() {
+	float multi = 1.00f;
+	if (type == AlienType.EYE_RED) {
+	multi = 1.00f + 0.50f * challengeLevel;
+	}
+	if (nextShootMS <= 0) {
+	nextShootMS = 4000 + random.nextInt(3) * 1000;
+
+	Player player = world.getPlayer();
+	float dx = player.x - x;
+	float dz = player.z - z;
+
+	Vector3f projectileDirection = new Vector3f(dx, 0, dz);
+	projectileDirection.normalise();
+	Projectile bullet = new AlienProjectile(world, x, 10, z,
+		projectileDirection, shootFrequencyNorm * multi);
+	world.addEntity(bullet);
+
+	if (challengeLevel > 0) {
+	    double angle = Math.atan2(projectileDirection.z,
+		    projectileDirection.x);
+
+	    projectileDirection = new Vector3f();
+	    projectileDirection.x = (float) Math.cos(angle + Math.PI
+		    * .05);
+	    projectileDirection.z = (float) Math.sin(angle + Math.PI
+		    * .05);
+	    bullet = new AlienProjectile(world, x, 10, z,
+		    projectileDirection, shootFrequencyNorm * multi);
+	    world.addEntity(bullet);
+
+	    projectileDirection = new Vector3f();
+	    projectileDirection.x = (float) Math.cos(angle - Math.PI
+		    * .05);
+	    projectileDirection.z = (float) Math.sin(angle - Math.PI
+		    * .05);
+	    bullet = new AlienProjectile(world, x, 10, z,
+		    projectileDirection, shootFrequencyNorm * multi);
+	    world.addEntity(bullet);
+	}
+	if (challengeLevel > 1) {
+	    // at level 2, withdraw one second of delay
+	    nextShootMS -= 1000;
+	}
+
+	Sounds.getInstance().playSound(Sounds.ALIEN_SHOOT, x, y, z);
+	}
     }
 
     @Override
@@ -339,19 +372,20 @@ public class Alien extends HealthEntity {
 
     @Override
     public float getMaxHealth() {
-	if (type == AlienType.ATTACK_NUKE) {
+	switch(type){
+	case ATTACK_NUKE:
 	    return 100.0f + 50.0f * challengeLevel;
-	}
-	if (type == AlienType.BIGGUS) {
+	case BIGGUS:
 	    return 500.0f + 100.0f * challengeLevel;
-	}
-	if (type == AlienType.EYE_RED) {
-	    return 200.0f + 75.0f * challengeLevel;
-	}
-	if (type == AlienType.EYE_BLUE) {
+	case EYE_BLUE:
 	    return 300.0f + 100.0f * challengeLevel;
+	case EYE_RED:
+	    return 200.0f + 75.0f * challengeLevel;
+	case ATTACK_PLAYER:
+	case SHOOTER:
+	default:
+	    return 100.0f;
 	}
-	return 100.0f;
     }
 
     @Override
