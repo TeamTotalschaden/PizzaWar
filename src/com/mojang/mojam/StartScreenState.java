@@ -62,7 +62,7 @@ public class StartScreenState extends BasicGameState {
 		anim.draw(gc.getWidth() / 2 - anim.getWidth() / 2,
 				gc.getHeight() / 2 + 100);
 		grphcs.setColor(new org.newdawn.slick.Color(0xFFFFFFFF));
-		grphcs.drawString(MainClass.Version, gc.getWidth() - 100,
+		grphcs.drawString(MainClass.Version, gc.getWidth() - grphcs.getFont().getWidth(MainClass.Version) - 10,
 				gc.getHeight() - 25);
 	}
 
